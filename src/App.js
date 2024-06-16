@@ -7,6 +7,7 @@ import Navbar from './components/Navbar';
 import Signup from './components/Signup';
 import Login from './components/Login';
 import Post from './components/Post';
+import InfoPage from './components/InfoPage';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
       <Route path='/chats' element={<Chats/>}></Route>
       <Route path='/signup' element={<Signup/>}></Route>
       <Route path='/login' element={<Login/>}></Route>
+      <Route path='/info' element={<InfoPage/>}></Route>
     </Routes>
     </div>
   );

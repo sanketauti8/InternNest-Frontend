@@ -1,10 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';  
 
 export const Home = () => {
+  const navigate = useNavigate();
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
+      if(!localStorage.getItem('userId')){
+        navigate('/info');
+      window.location.reload();
+      }
+
     const fetchPosts = async () => {
       try {
         const url = 'https://internify-backend.onrender.com/getallpost';

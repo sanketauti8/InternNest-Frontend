@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-
+import { useNavigate } from 'react-router-dom';   
 const Post = () => {
   const [description, setDescription] = useState('');
   const [userId, setUserId] = useState('');
+  const navigate = useNavigate();
 
   useEffect(() => {
     // Fetch userId from local storage on component mount
@@ -17,9 +18,10 @@ const Post = () => {
 
   const handlePostSubmit = async (event) => {
     event.preventDefault();
-      if(!localStorage.getItem('userId')){
-        alert('User Should be logged in');
-      }
+    if(!localStorage.getItem('userId')){
+      navigate('/info');
+    window.location.reload();
+    }
 
     try {
       const response = await fetch(`https://internify-backend.onrender.com/post/${userId}`, {
@@ -36,10 +38,13 @@ const Post = () => {
         throw new Error('Failed to add post');
       }
 
+
       // Clear the description field after successful submission
       setDescription('');
       console.log('Post added successfully');
       // Optionally, redirect or update UI after successful post
+      navigate('/');
+      window.location.reload();
     } catch (error) {
       console.error('Error adding post:', error);
     }

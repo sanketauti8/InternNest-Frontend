@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { useNavigate } from 'react-router-dom';   
+
 
 const Signup = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -39,6 +42,8 @@ const Signup = () => {
     .then(data => {
       console.log('Signup successful:', data);
       // Handle success, e.g., show a success message or redirect
+      navigate('/login');
+      window.location.reload();
     })
     .catch(error => {
       console.error('Error signing up:', error);

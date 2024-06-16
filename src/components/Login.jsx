@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';   
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Login = () => {
@@ -51,6 +51,7 @@ const Login = () => {
 
       // Redirect or update UI after successful login
     } catch (error) {
+      alert('Wrong email or password. Try again!!');
       setError(error.message);
       console.error('Error logging in:', error);
     }
