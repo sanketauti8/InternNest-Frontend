@@ -16,7 +16,7 @@ export const Home = () => {
 
     const fetchPosts = async () => {
       try {
-        const url = `http://localhost:5000/search${searchQuery}`;
+        const url = `https://internify-backend.onrender.com/search${searchQuery}`;
         const response = await fetch(url);
         if (!response.ok) {
           throw new Error('Something went wrong!');
@@ -39,7 +39,7 @@ export const Home = () => {
     const queryParams = new URLSearchParams(formData).toString();
 
     try {
-      const url = `https://internify-frontend.onrender.com/search?${queryParams}`;
+      const url = `https://internify-backend.onrender.com/search?${queryParams}`;
       const response = await fetch(url);
       if (!response.ok) {
         throw new Error('Something went wrong!');
@@ -127,3 +127,360 @@ export const Home = () => {
     </>
   );
 };
+
+
+
+// import React, { useEffect, useState } from 'react';
+// import { Link, useNavigate } from 'react-router-dom';
+// import './Home.css'; // Assuming you have a custom CSS file for additional styling
+
+// export const Home = () => {
+//   const navigate = useNavigate();
+//   const [posts, setPosts] = useState([]);
+//   const [searchQuery, setSearchQuery] = useState('');
+
+//   useEffect(() => {
+//     if (!localStorage.getItem('userId')) {
+//       navigate('/info');
+//       window.location.reload();
+//     }
+
+//     const fetchPosts = async () => {
+//       try {
+//         const url = `http://localhost:5000/search${searchQuery}`;
+//         const response = await fetch(url);
+//         if (!response.ok) {
+//           throw new Error('Something went wrong!');
+//         }
+//         const data = await response.json();
+//         const sortedPosts = data.msg.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+//         setPosts(sortedPosts);
+//         setSearchQuery(''); // Clear the search query state
+//       //e.target.reset(); // Reset the form input fields
+//       } catch (error) {
+//         console.error('Error fetching posts:', error);
+//       }
+//     };
+
+//     fetchPosts();
+//   }, [navigate, searchQuery]);
+
+//   const handleSearch = async (e) => {
+//     e.preventDefault();
+//     const formData = new FormData(e.target);
+//     const queryParams = new URLSearchParams(formData).toString();
+
+//     try {
+//       const url = `http://localhost:5000/search?${queryParams}`;
+//       const response = await fetch(url);
+//       if (!response.ok) {
+//         throw new Error('Something went wrong!');
+//       }
+//       const data = await response.json();
+//       const sortedPosts = data.msg.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+//       setPosts(sortedPosts);
+//     } catch (error) {
+//       console.error('Error fetching posts:', error);
+//     }
+  
+//   };
+
+//   console.log(posts);
+//   return (
+//     <>
+//       <div className="container mx-5 mt-5">
+//         <div className="card mb-4">
+//           <div className="card-header">Quote</div>
+//           <div className="card-body">
+//             <blockquote className="blockquote mb-0">
+//               <p>A well-known quote, contained in a blockquote element.</p>
+//               <footer className="blockquote-footer">
+//                 Someone famous in <cite title="Source Title">Source Title</cite>
+//               </footer>
+//             </blockquote>
+//           </div>
+//         </div>
+//         <div className="mt-4">
+//           <form onSubmit={handleSearch} className="mb-3">
+//             <div className="input-group">
+//               <input
+//                 type="text"
+//                 className="form-control"
+//                 placeholder="Search by zip code"
+//                 aria-label="Search"
+//                 name="postzip"
+//               />
+//               <button className="btn btn-outline-secondary mb-3" type="submit">Search by Zip</button>
+//             </div>
+//           </form>
+//           {posts.length === 0 ? (
+//             <p>No posts available</p>
+//           ) : (
+//             <div className="row">
+//               {posts.map(post => (
+//                 <div key={post._id} className="col-12 mb-4">
+//                   <div className="card h-100 shadow-sm">
+//                     <img src={post.profileImage} className="card-img-top img-fluid post-img" alt="Profile" />
+//                     <div className="card-body d-flex flex-column">
+//                       <h5 className="card-title">{post.userFirstName} {post.userLastName}</h5>
+//                       <h6 className="card-subtitle mb-2 text-muted">Location: {post.city}, {post.state}, {post.country} {post.zip}</h6>
+//                       <p className="card-text flex-grow-1">{post.description}</p>
+//                       <div className="mt-auto">
+//                         <Link to={`/userprofile/${post.user_id}`} state={{ post }} className="btn btn-primary btn-sm">User Profile</Link>
+//                         <a 
+//                           href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(post.city + ', ' + post.state + ', ' + post.country + ' ' + post.zip)}`} 
+//                           target="_blank" 
+//                           rel="noopener noreferrer" 
+//                           className="btn btn-outline-secondary btn-sm ms-2"
+//                         >
+//                           Location
+//                         </a>
+//                       </div>
+//                     </div>
+//                   </div>
+//                 </div>
+//               ))}
+//             </div>
+//           )}
+//         </div>
+//       </div>
+//     </>
+//   );
+// };
+
+
+
+// import React, { useEffect, useState } from 'react';
+// import { Link, useNavigate } from 'react-router-dom';
+// import './Home.css'; // Assuming you have a custom CSS file for additional styling
+
+// export const Home = () => {
+//   const navigate = useNavigate();
+//   const [posts, setPosts] = useState([]);
+//   const [searchQuery, setSearchQuery] = useState('');
+
+//   useEffect(() => {
+//     if (!localStorage.getItem('userId')) {
+//       navigate('/info');
+//       window.location.reload();
+//     }
+
+//     const fetchPosts = async () => {
+//       try {
+//         const url = `http://localhost:5000/search${searchQuery}`;
+//         const response = await fetch(url);
+//         if (!response.ok) {
+//           throw new Error('Something went wrong!');
+//         }
+//         const data = await response.json();
+//         const sortedPosts = data.msg.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+//         setPosts(sortedPosts);
+//       } catch (error) {
+//         console.error('Error fetching posts:', error);
+//       }
+//     };
+
+//     fetchPosts();
+//   }, [navigate, searchQuery]);
+
+//   const handleSearch = async (e) => {
+//     e.preventDefault();
+//     const formData = new FormData(e.target);
+//     const queryParams = new URLSearchParams(formData).toString();
+
+//     try {
+//       const url = `http://localhost:5000/search?${queryParams}`;
+//       const response = await fetch(url);
+//       if (!response.ok) {
+//         throw new Error('Something went wrong!');
+//       }
+//       const data = await response.json();
+//       const sortedPosts = data.msg.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+//       setPosts(sortedPosts);
+//     } catch (error) {
+//       console.error('Error fetching posts:', error);
+//     }
+  
+//   };
+//   console.log(posts)
+//   return (
+//     <>
+//       <div className="container mx-5 mt-5">
+//         <div className="card mb-4">
+//           <div className="card-header">Quote</div>
+//           <div className="card-body">
+//             <blockquote className="blockquote mb-0">
+//               <p>A well-known quote, contained in a blockquote element.</p>
+//               <footer className="blockquote-footer">
+//                 Someone famous in <cite title="Source Title">Source Title</cite>
+//               </footer>
+//             </blockquote>
+//           </div>
+//         </div>
+//         <div className="mt-4">
+//           <form onSubmit={handleSearch} className="mb-3">
+//             <div className="input-group">
+//               <input
+//                 type="text"
+//                 className="form-control"
+//                 placeholder="Search by zip code"
+//                 aria-label="Search"
+//                 name="postzip"
+//               />
+//               <button className="btn btn-outline-secondary mb-3" type="submit">Search by Zip</button>
+//             </div>
+//           </form>
+//           {posts.length === 0 ? (
+//             <p>No posts available</p>
+//           ) : (
+//             <div className="row">
+//               {posts.map(post => (
+//                 <div key={post._id} className="col-md-4 mb-4">
+//                   <div className="card h-100 shadow-sm">
+//                     <img src={post.profileImage} className="card-img-top img-fluid post-img" alt="Profile" />
+//                     <div className="card-body d-flex flex-column">
+//                       <h5 className="card-title">{post.userFirstName} {post.userLastName}</h5>
+//                       <h6 className="card-subtitle mb-2 text-muted">Location: {post.city}, {post.state}, {post.country} {post.zip}</h6>
+//                       <p className="card-text flex-grow-1">{post.description}</p>
+//                       <div className="mt-auto">
+//                         <Link to={`/userprofile/${post.user_id}`} state={{ post }} className="btn btn-primary btn-sm">User Profile</Link>
+//                         <a 
+//                           href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(post.city + ', ' + post.state + ', ' + post.country + ' ' + post.zip)}`} 
+//                           target="_blank" 
+//                           rel="noopener noreferrer" 
+//                           className="btn btn-outline-secondary btn-sm ms-2"
+//                         >
+//                           Location
+//                         </a>
+//                       </div>
+//                     </div>
+//                   </div>
+//                 </div>
+//               ))}
+//             </div>
+//           )}
+//         </div>
+//       </div>
+//     </>
+//   );
+// };
+
+
+
+
+
+
+
+// import React, { useEffect, useState } from 'react';
+// import { Link, useNavigate } from 'react-router-dom';
+// import './Home.css'; // Assuming you have a custom CSS file for additional styling
+
+// export const Home = () => {
+//   const navigate = useNavigate();
+//   const [posts, setPosts] = useState([]);
+//   const [searchQuery, setSearchQuery] = useState('');
+
+//   useEffect(() => {
+//     if (!localStorage.getItem('userId')) {
+//       navigate('/info');
+//       window.location.reload();
+//     }
+
+//     const fetchPosts = async () => {
+//       try {
+//         const url = `http://localhost:5000/search${searchQuery}`;
+//         const response = await fetch(url);
+//         if (!response.ok) {
+//           throw new Error('Something went wrong!');
+//         }
+//         const data = await response.json();
+//         const sortedPosts = data.msg.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+//         setPosts(sortedPosts);
+//       } catch (error) {
+//         console.error('Error fetching posts:', error);
+//       }
+//     };
+
+//     fetchPosts();
+//   }, [navigate, searchQuery]);
+
+//   const handleSearch = async (e) => {
+//     e.preventDefault();
+//     const formData = new FormData(e.target);
+//     const queryParams = new URLSearchParams(formData).toString();
+
+//     try {
+//       const url = `http://localhost:5000/search?${queryParams}`;
+//       const response = await fetch(url);
+//       if (!response.ok) {
+//         throw new Error('Something went wrong!');
+//       }
+//       const data = await response.json();
+//       const sortedPosts = data.msg.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+//       setPosts(sortedPosts);
+//     } catch (error) {
+//       console.error('Error fetching posts:', error);
+//     }
+//   };
+
+//   return (
+//     <>
+//       <div className="container mx-5 mt-5">
+//         <div className="card mb-4">
+//           <div className="card-header">Quote</div>
+//           <div className="card-body">
+//             <blockquote className="blockquote mb-0">
+//               <p>A well-known quote, contained in a blockquote element.</p>
+//               <footer className="blockquote-footer">
+//                 Someone famous in <cite title="Source Title">Source Title</cite>
+//               </footer>
+//             </blockquote>
+//           </div>
+//         </div>
+//         <div className="mt-4">
+//           <form onSubmit={handleSearch} className="mb-3">
+//             <div className="input-group">
+//               <input
+//                 type="text"
+//                 className="form-control"
+//                 placeholder="Search by zip code"
+//                 aria-label="Search"
+//                 name="postzip"
+//               />
+//               <button className="btn btn-outline-secondary" type="submit">Search by Zip</button>
+//             </div>
+//           </form>
+//           {posts.length === 0 ? (
+//             <p>No posts available</p>
+//           ) : (
+//             <div className="row">
+//               {posts.map(post => (
+//                 <div key={post._id} className="col-md-4 mb-4">
+//                   <div className="card h-100 shadow-sm">
+//                     <img src={`http://localhost:5000${post.profileImage}`} className="card-img-top img-fluid post-img" alt="Profile" />
+//                     <div className="card-body d-flex flex-column">
+//                       <h5 className="card-title">{post.userFirstName} {post.userLastName}</h5>
+//                       <h6 className="card-subtitle mb-2 text-muted">Location: {post.city}, {post.state}, {post.country} {post.zip}</h6>
+//                       <p className="card-text flex-grow-1">{post.description}</p>
+//                       <div className="mt-auto">
+//                         <Link to={`/userprofile/${post.user_id}`} state={{ post }} className="btn btn-primary btn-sm">User Profile</Link>
+//                         <a 
+//                           href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(post.city + ', ' + post.state + ', ' + post.country + ' ' + post.zip)}`} 
+//                           target="_blank" 
+//                           rel="noopener noreferrer" 
+//                           className="btn btn-outline-secondary btn-sm ms-2"
+//                         >
+//                           Location
+//                         </a>
+//                       </div>
+//                     </div>
+//                   </div>
+//                 </div>
+//               ))}
+//             </div>
+//           )}
+//         </div>
+//       </div>
+//     </>
+//   );
+// };
