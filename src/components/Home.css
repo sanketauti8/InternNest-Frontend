@@ -1,0 +1,128 @@
+/* Home.css
+
+.card {
+    border-radius: 15px;
+    transition: transform 0.2s ease-in-out;
+  }
+  
+  .card:hover {
+    transform: translateY(-10px);
+  }
+  
+  .card-img-top {
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    max-height: 200px;
+    object-fit: cover;
+  }
+  
+  .card-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+  }
+  
+  .card-subtitle {
+    font-size: 0.9rem;
+  }
+  
+  .card-text {
+    margin-top: 10px;
+  }
+  
+  .btn {
+    margin-top: 10px;
+  }
+   */
+
+
+   /* Home.css */
+
+
+
+
+
+
+   /* Home.css */
+/* Home.css */
+.container {
+  max-width: 800px;
+  background-color: #f8f9fa;
+}
+
+.card {
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: #ffffff;
+}
+
+.card-header {
+  background-color: #e9ecef;
+  font-weight: bold;
+  color: #343a40;
+}
+
+.blockquote {
+  font-size: 1.25rem;
+  color: #343a40;
+}
+
+.input-group {
+  margin-bottom: 1rem;
+}
+
+.card-body {
+  padding: 1rem 1.5rem;
+  color: #343a40;
+}
+
+.card-title {
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  color: #343a40;
+}
+
+.card-subtitle {
+  font-size: 1rem;
+  color: #6c757d;
+}
+
+.card-text {
+  margin-top: 1rem;
+  font-size: 1.1rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 3; /* Number of lines to show */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.card-text.expanded {
+  -webkit-line-clamp: unset;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+  border-color: #0056b3;
+}
+
+.btn-outline-secondary {
+  border-color: #6c757d;
+  color: #6c757d;
+}
+
+.btn-outline-secondary:hover {
+  background-color: #6c757d;
+  color: #fff;
+}
+
+.read-more-btn {
+  color: #007bff;
+  cursor: pointer;
+  font-size: 1rem;
+}
