@@ -1,9 +1,10 @@
+
 import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useNavigate } from 'react-router-dom';   
 
-
 const Signup = () => {
+  console.log('Inside signup');
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     firstName: '',
@@ -18,6 +19,8 @@ const Signup = () => {
     zip: ''
   });
 
+  const [error, setError] = useState(''); // Error state
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -29,31 +32,35 @@ const Signup = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log('Form Data Submitted:', formData);
-    //form submission logic here
-    const url='https://internify-backend.onrender.com/signup';
-    fetch(url,{
-      method:'POST',
-      headers:{
+    
+    const url = 'https://internify-backend.onrender.com/signup';
+    fetch(url, {
+      method: 'POST',
+      headers: {
          'Content-Type': 'application/json'
       },
-      body:JSON.stringify(formData)
+      body: JSON.stringify(formData)
     })
     .then(response => response.json())
     .then(data => {
-      console.log('Signup successful:', data);
-      // Handle success, e.g., show a success message or redirect
-      navigate('/login');
-      window.location.reload();
+      if (data.error) {
+        setError(data.error); // Set error message
+      } else {
+        console.log('Signup successful:', data);
+        navigate('/login');
+        window.location.reload();
+      }
     })
     .catch(error => {
       console.error('Error signing up:', error);
-      // Handle error, e.g., show an error message
+      setError('An unexpected error occurred. Please try again.'); // Handle unexpected errors
     });
-};
+  };
 
   return (
     <div className="container mt-5 signup-form">
       <h2>Signup Form</h2>
+      {error && <div className="alert alert-danger" role="alert">{error}</div>} {/* Conditionally render error message */}
       <form onSubmit={handleSubmit}>
         <div className="row">
           <div className="col-md-6">
@@ -196,3 +203,6 @@ const Signup = () => {
 };
 
 export default Signup;
+
+
+
